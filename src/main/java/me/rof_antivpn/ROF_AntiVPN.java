@@ -3,6 +3,7 @@ package me.rof_antivpn;
 import me.rof_antivpn.commands.VPNCommandExecutor;
 import me.rof_antivpn.commands.VPNTabCompletion;
 import me.rof_antivpn.events.PlayerLoginEventListener;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,6 +17,10 @@ public final class ROF_AntiVPN extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         System.out.println("ROF_AntiVPN has starting...");
+
+        // bstats
+        int pluginId = 19187;
+        new Metrics(this, pluginId);
 
         //Setup Config
         getConfig().options().copyDefaults();
