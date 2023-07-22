@@ -14,7 +14,7 @@ public class AntiVPN {
 
     public static String isVPN(String ipAddress) {
         try {
-            String url = "https://proxycheck.io/v2/" + ipAddress + "?key=" + ROF_AntiVPN.proxiesAPIKey + "&vpn=1&asn=1&risk=1&port=1&seen=1&days=7&tag=ROFAntiVPN";
+            String url = "https://proxycheck.io/v2/" + ipAddress + "?key=" + ROF_AntiVPN.proxiesAPIKey + "&vpn=1&asn=1&risk=1&port=1&seen=1&days=7&tag=ROF-AntiVPN";
 
             HttpResponse<JsonNode> response = Unirest.get(url)
                     .header("User-Agent", "Mozilla/5.0")

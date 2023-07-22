@@ -14,7 +14,11 @@ public class VPNTabCompletion implements TabCompleter {
             List<String> commandtab = new ArrayList<>();
             commandtab.add("reload");
             commandtab.add("setapikey");
-
+            if(args.length == 2) {
+                if(args.equals("setapikey")) {
+                    commandtab.add("<your-api-key>");
+                }
+            }
             return commandtab;
         }
         return null;
