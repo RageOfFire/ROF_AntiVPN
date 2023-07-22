@@ -1,0 +1,19 @@
+name: ROF_AntiVPN
+version: '${project.version}'
+main: me.rof_antivpn.ROF_AntiVPN
+api-version: 1.13
+authors: [ RageOfFire ]
+description: A simple antiVPN plugin!
+commands:
+  rofvpn:
+    description: Manage AntiVPN plugin settings
+    usage: /rofvpn <command>
+    aliases:
+      - vpn
+  permission:
+    rofvpn.admin:
+      description: Permission for admin user plugin
+      default: op
+    rofvpn.bypass:
+      description: Permission to bypass VPN check
+      default: op

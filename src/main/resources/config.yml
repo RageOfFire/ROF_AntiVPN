@@ -1,0 +1,15 @@
+#####################################################
+#               ROF_AntiVPN                         #
+#               by RageOfFire                       #
+#####################################################
+# A api key you get from https://proxycheck.io, they come with 1000 free queries / day
+APIKey: 'your-api-key'
+# Here you can configure messages for ROF_AntiVPN.
+messages:
+  kick-message: 'Sorry, VPNs are not allowed on this server!'
+  command-reload: 'Successfully reloaded ROF_AntiVPN plugin!'
+  no-permission: 'Your don''t have permission to do that.'
+  usage-main: 'Usage: /rofvpn <command>'
+  usage-key: 'Usage: /rofvpn setapikey "api-key"'
+  apikey-success: 'API key updated successfully!'
+  setup-key: 'You have not set your API key in the config.yml file, you need setup it or using /rofvpn setapikey.'
