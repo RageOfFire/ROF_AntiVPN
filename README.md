@@ -12,6 +12,8 @@
 
 ## Getting started
 
+Download plugin from [here](https://www.spigotmc.org/resources/rof_antivpn.111408/)
+
 Take a look at my [wiki](https://github.com/RageOfFire/ROF_AntiVPN/wiki) to know what to do next
 
 ## Support
