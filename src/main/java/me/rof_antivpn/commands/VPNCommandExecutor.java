@@ -22,7 +22,7 @@ public class VPNCommandExecutor implements CommandExecutor {
         String apikeymess = plugin.getConfig().getString("messages.apikey-success");
         if (args.length == 0) {
             // Display help or usage information
-            sender.sendMessage(ChatColor.RED + usagemess);
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', usagemess));
             return true;
         }
         String subCommand = args[0].toLowerCase();
@@ -31,13 +31,13 @@ public class VPNCommandExecutor implements CommandExecutor {
             if (sender.hasPermission("rofvpn.admin")) {
                 plugin.reloadConfig();
                 plugin.loadConfiguration();
-                sender.sendMessage(ChatColor.GREEN + reloadmess);
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', reloadmess));
             } else {
-                sender.sendMessage(ChatColor.RED + permissionmess);
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', permissionmess));
             }
         } else if (subCommand.equals("setapikey")) {
             if (args.length < 2) {
-                sender.sendMessage(ChatColor.RED + usagekeymess);
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', usagekeymess));
                 return true;
             }
             if (sender.hasPermission("rofvpn.admin")) {
@@ -45,12 +45,12 @@ public class VPNCommandExecutor implements CommandExecutor {
                 plugin.getConfig().set("APIKey", newAPIKey);
                 plugin.saveConfig();
                 plugin.loadConfiguration();
-                sender.sendMessage(ChatColor.GREEN + apikeymess);
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', apikeymess));
             } else {
-                sender.sendMessage(ChatColor.RED + permissionmess);
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', permissionmess));
             }
         } else {
-            sender.sendMessage(ChatColor.RED + usagemess);
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', usagemess));
         }
         return true;
     }

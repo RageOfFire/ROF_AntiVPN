@@ -6,7 +6,7 @@
 
     <groupId>me</groupId>
     <artifactId>ROF_AntiVPN</artifactId>
-    <version>1.1</version>
+    <version>2.0</version>
     <packaging>jar</packaging>
 
     <name>ROF_AntiVPN</name>
@@ -78,18 +78,7 @@
             <version>1.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <!-- json -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20230618</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.konghq/unirest-java -->
-        <dependency>
-            <groupId>com.konghq</groupId>
-            <artifactId>unirest-java</artifactId>
-            <version>3.14.5</version>
-        </dependency>
+
         <!-- bstats -->
         <dependency>
             <groupId>org.bstats</groupId>

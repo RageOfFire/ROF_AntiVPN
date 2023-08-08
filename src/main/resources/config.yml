@@ -4,12 +4,61 @@
 #####################################################
 # A api key you get from https://proxycheck.io, they come with 1000 free queries / day
 APIKey: 'your-api-key'
-# Here you can configure messages for ROF_AntiVPN.
+
+# this is an option to log out information when player got VPN/proxies flags
+# console: Will send a message to console
+# player: Will send a message to player have permission (rofvpn.alert)
+# file: Will send a message to file name "logs.txt"
+logs:
+  console: true
+  player: true
+  file: false
+
+#####################################################
+#               Message                             #
+#####################################################
 messages:
   kick-message: 'Sorry, VPNs are not allowed on this server!'
-  command-reload: 'Successfully reloaded ROF_AntiVPN plugin!'
-  no-permission: 'Your don''t have permission to do that.'
-  usage-main: 'Usage: /rofvpn <command>'
-  usage-key: 'Usage: /rofvpn setapikey "api-key"'
-  apikey-success: 'API key updated successfully!'
-  setup-key: 'You have not set your API key in the config.yml file, you need setup it or using /rofvpn setapikey.'
+  command-reload: '&aSuccessfully reloaded ROF_AntiVPN plugin!'
+  no-permission: '&cYour don''t have permission to do that.'
+  usage-main: '&cUsage: /rofvpn <command>'
+  usage-key: '&cUsage: /rofvpn setapikey "api-key"'
+  apikey-success: '&aAPI key updated successfully!'
+  setup-key: '&cYou have not set your API key in the config.yml file, you need setup it or using /rofvpn setapikey.'
+  alert-message: '&e%player% with %ip% (Risk Level/Country/Type) (%risk%%/%country%/%type%) using VPN/Proxies to join server'
+
+#####################################################
+#               Discord Webhook                     #
+#####################################################
+# All available placeholder:
+# %player% is player name
+# %ip% is ip address of that player
+# %risk% is risk level of that ip
+# %country% is a country of that ip
+# %type% is type of VPN/Proxy flag
+discord-webhook:
+  enable: false
+  webhook-url: "your-webhook-url"
+  name: "ROF_AntiVPN"
+  avatar: "https://i.imgur.com/FbdMyWF.png"
+  title: "VPN/Proxy Detected"
+  description: "%player% joined server with VPN/Proxy"
+  fields:
+    1:
+      name: "IP:"
+      value: "%ip%"
+      inline: true
+    2:
+      name: "Risk:"
+      value: "%risk%%"
+      inline: true
+    3:
+      name: "Country:"
+      value: "%country%"
+      inline: true
+    4:
+      name: "Type:"
+      value: "%type%"
+      inline: true
+  thumbnail:
+    icon: "https://mc-heads.net/avatar/%player%/"

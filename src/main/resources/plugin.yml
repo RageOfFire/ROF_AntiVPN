@@ -10,10 +10,13 @@ commands:
     usage: /rofvpn <command>
     aliases:
       - vpn
-  permission:
-    rofvpn.admin:
-      description: Permission for admin user plugin
-      default: op
-    rofvpn.bypass:
-      description: Permission to bypass VPN check
-      default: op
+permission:
+  rofvpn.admin:
+    description: Permission for admin user plugin
+    default: op
+  rofvpn.bypass:
+    description: Permission to bypass VPN check
+    default: op
+  rofvpn.alert:
+    description: Permission to alert when some one use VPN/Proxies
+    default: op
