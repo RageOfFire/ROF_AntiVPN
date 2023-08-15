@@ -79,13 +79,13 @@ public class PlayerLoginEventListener implements Listener {
                 DiscordWebhook.EmbedObject discordAlert = new DiscordWebhook.EmbedObject();
                 // Embed created
                 discordAlert
-                        .setTitle(plugin.getConfig().getString("discord-webhook.webhook-url")
+                        .setTitle(plugin.getConfig().getString("discord-webhook.title")
                                 .replace("%player%", player.getName())
                                 .replace("%ip%", ipAddress)
                                 .replace("%risk%", isVPN.get("risk").getAsString())
                                 .replace("%country%", isVPN.get("country").getAsString())
                                 .replace("%type%", isVPN.get("type").getAsString()))
-                        .setDescription(plugin.getConfig().getString("discord-webhook.webhook-url")
+                        .setDescription(plugin.getConfig().getString("discord-webhook.description")
                                 .replace("%player%", player.getName())
                                 .replace("%ip%", ipAddress)
                                 .replace("%risk%", isVPN.get("risk").getAsString())
