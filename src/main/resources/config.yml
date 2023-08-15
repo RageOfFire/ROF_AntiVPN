@@ -60,5 +60,4 @@ discord-webhook:
       name: "Type:"
       value: "%type%"
       inline: true
-  thumbnail:
-    icon: "https://mc-heads.net/avatar/%player%/"
+  thumbnail: "https://mc-heads.net/avatar/%player%/"
