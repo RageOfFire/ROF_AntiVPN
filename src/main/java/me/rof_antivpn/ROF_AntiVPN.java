@@ -1,5 +1,6 @@
 package me.rof_antivpn;
 
+import com.tchristofferson.configupdater.ConfigUpdater;
 import me.rof_antivpn.commands.VPNCommandExecutor;
 import me.rof_antivpn.commands.VPNTabCompletion;
 import me.rof_antivpn.events.PlayerLoginEventListener;
@@ -8,6 +9,9 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -26,7 +30,15 @@ public final class ROF_AntiVPN extends JavaPlugin {
         //Setup Config
         getConfig().options().copyDefaults();
         saveDefaultConfig();
-        loadConfiguration();
+        File configFile = new File(getDataFolder(), "config.yml");
+
+        try {
+            ConfigUpdater.update(this, "config.yml", configFile, Arrays.asList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        loadConfiguration();
+        reloadConfig();
         // Listen
         getServer().getPluginManager().registerEvents(new PlayerLoginEventListener(this), this);
         // Command

@@ -50,7 +50,9 @@ public class PlayerLoginEventListener implements Listener {
                     .replace("%country%", isVPN.get("country").getAsString())
                     .replace("%type%", isVPN.get("type").getAsString());
             // Kick player
-            e.disallow(PlayerLoginEvent.Result.KICK_OTHER, ChatColor.RED + kickmess);
+            if(plugin.getConfig().getBoolean("kick-player")) {
+                e.disallow(PlayerLoginEvent.Result.KICK_OTHER, ChatColor.RED + kickmess);
+            }
             // Alert to console
             if (plugin.getConfig().getBoolean("logs.console")) {
                 Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', alertmess));

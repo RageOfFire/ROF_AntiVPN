@@ -5,7 +5,7 @@
 # A api key you get from https://proxycheck.io, they come with 1000 free queries / day
 APIKey: 'your-api-key'
 
-# this is an option to log out information when player got VPN/proxies flags
+# This is an option to log out information when player got VPN/proxies flags
 # console: Will send a message to console
 # player: Will send a message to player have permission (rofvpn.alert)
 # file: Will send a message to file name "logs.txt"
@@ -13,6 +13,8 @@ logs:
   console: true
   player: true
   file: false
+# This option will kick player when detect VPN/proxy
+kick-player: true
 
 #####################################################
 #               Message                             #
