@@ -37,7 +37,7 @@ public final class ROF_AntiVPN extends JavaPlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        loadConfiguration();
+        loadConfiguration();
         reloadConfig();
         // Listen
         getServer().getPluginManager().registerEvents(new PlayerLoginEventListener(this), this);
@@ -45,7 +45,6 @@ public final class ROF_AntiVPN extends JavaPlugin {
         getCommand("rofvpn").setExecutor(new VPNCommandExecutor(this));
         getCommand("rofvpn").setTabCompleter(new VPNTabCompletion());
     }
-
 
     public void loadConfiguration() {
         FileConfiguration config = getConfig();
