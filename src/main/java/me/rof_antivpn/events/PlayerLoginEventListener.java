@@ -41,7 +41,13 @@ public class PlayerLoginEventListener implements Listener {
             return;
         }
         String ipAddress = e.getAddress().getHostAddress();
+        if(ipAddress.equalsIgnoreCase("localhost")) {
+            return;
+        }
         JsonObject isVPN = AntiVPN.isVPN(ipAddress);
+        if(isVPN == null) {
+            return;
+        }
         if (Objects.equals(isVPN.get("proxy").getAsString(), "yes")) {
             String alertmess = plugin.getConfig().getString("messages.alert-message")
                     .replace("%player%", player.getName())
