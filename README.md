@@ -10,6 +10,18 @@
 ![GitHub followers](https://img.shields.io/github/followers/RageOfFire)
 ![GitHub Repo stars](https://img.shields.io/github/stars/RageOfFire/ROF_AntiVPN)
 
+---
+
+### 💼 Work With Me
+
+Enjoying this project or need something custom?
+
+I'm available for freelance work, whether it's **building something new, fixing issues, or improving existing projects**.
+
+[![Hire Me on Fiverr](https://img.shields.io/badge/Hire_Me_on-Fiverr-1DBF73?style=for-the-badge)](https://www.fiverr.com/s/d00632G)
+
+---
+
 ## Getting started
 
 Download plugin from [here](https://www.spigotmc.org/resources/rof_antivpn.111408/)
