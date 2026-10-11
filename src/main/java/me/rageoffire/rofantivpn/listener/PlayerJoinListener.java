@@ -1,0 +1,39 @@
+package me.rageoffire.rofantivpn.listener;
+
+import me.rageoffire.rofantivpn.manager.VpnCheckManager;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+
+/**
+ * Triggers an async VPN check as soon as a player joins.
+ *
+ * Note: We use PlayerJoinEvent (not AsyncPlayerPreLoginEvent) because
+ * the Player object is required for permission checks and kicking.
+ * The kick will still fire before the player can interact.
+ */
+public class PlayerJoinListener implements Listener {
+
+    private final VpnCheckManager checkManager;
+
+    public PlayerJoinListener(VpnCheckManager checkManager) {
+        this.checkManager = checkManager;
+    }
+
+    @EventHandler(priority = EventPriority.LOW)
+    public void onJoin(PlayerJoinEvent event) {
+        var player = event.getPlayer();
+        if (player.getAddress() == null) return;
+
+        String ip = player.getAddress().getAddress().getHostAddress();
+
+        // Skip loopback / local addresses
+        if (ip.equals("127.0.0.1") || ip.startsWith("192.168.")
+                || ip.startsWith("10.") || ip.equals("0:0:0:0:0:0:0:1")) {
+            return;
+        }
+
+        checkManager.checkAsync(player, ip);
+    }
+}

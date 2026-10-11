@@ -1,22 +1,30 @@
 name: ROF_AntiVPN
 version: '${project.version}'
-main: me.rof_antivpn.ROF_AntiVPN
-api-version: 1.13
-authors: [ RageOfFire ]
-description: A simple antiVPN plugin!
+main: me.rageoffire.rofantivpn.ROFAntiVPN
+api-version: '1.20'
+description: Detect players using VPN/Proxy with fallback APIs, caching, and proxy server support.
+author: RageOfFire
+website: https://github.com/RageOfFire/ROF_AntiVPN
+
+softdepend:
+  - PlaceholderAPI
+
 commands:
   rofvpn:
-    description: Manage AntiVPN plugin settings
-    usage: /rofvpn <command>
-    aliases:
-      - vpn
-permission:
+    description: Main ROF_AntiVPN command
+    usage: /rofvpn <reload|setapikey|check|cache>
+    aliases: [vpn]
+
+permissions:
   rofvpn.admin:
-    description: Permission for admin user plugin
+    description: Access to reload, setapikey, cache commands
+    default: op
+  rofvpn.check:
+    description: Manually check a player's IP
     default: op
   rofvpn.bypass:
-    description: Permission to bypass VPN check
-    default: op
+    description: Bypass VPN check
+    default: false
   rofvpn.alert:
-    description: Permission to alert when some one use VPN/Proxies
+    description: Receive alerts when a player is detected using VPN/Proxy
     default: op

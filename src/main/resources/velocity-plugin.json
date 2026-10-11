@@ -1,0 +1,8 @@
+{
+  "id": "rof-antivpn",
+  "name": "ROF_AntiVPN",
+  "version": "${project.version}",
+  "description": "Detect players using VPN/Proxy — Velocity edition",
+  "authors": ["RageOfFire"],
+  "main": "me.rageoffire.rofantivpn.velocity.ROFAntiVPNVelocity"
+}

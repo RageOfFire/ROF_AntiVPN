@@ -1,0 +1,5 @@
+name: ROF_AntiVPN
+version: '${project.version}'
+main: me.rageoffire.rofantivpn.bungee.ROFAntiVPNBungee
+author: RageOfFire
+description: Detect players using VPN/Proxy — BungeeCord edition
