@@ -1,6 +1,7 @@
 package me.rageoffire.rofantivpn.listener;
 
 import me.rageoffire.rofantivpn.manager.VpnCheckManager;
+import me.rageoffire.rofantivpn.util.LocalAddressUtil;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -28,11 +29,8 @@ public class PlayerJoinListener implements Listener {
 
         String ip = player.getAddress().getAddress().getHostAddress();
 
-        // Skip loopback / local addresses
-        if (ip.equals("127.0.0.1") || ip.startsWith("192.168.")
-                || ip.startsWith("10.") || ip.equals("0:0:0:0:0:0:0:1")) {
-            return;
-        }
+        // Skip loopback, private, link-local, and all other reserved ranges
+        if (LocalAddressUtil.isLocal(ip)) return;
 
         checkManager.checkAsync(player, ip);
     }

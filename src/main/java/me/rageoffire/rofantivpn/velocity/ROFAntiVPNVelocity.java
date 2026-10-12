@@ -13,6 +13,7 @@ import me.rageoffire.rofantivpn.api.ProxyCheckProvider;
 import me.rageoffire.rofantivpn.api.VpnCheckResult;
 import me.rageoffire.rofantivpn.api.VpnProvider;
 import me.rageoffire.rofantivpn.cache.IpCache;
+import me.rageoffire.rofantivpn.util.LocalAddressUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.slf4j.Logger;
@@ -95,9 +96,8 @@ public class ROFAntiVPNVelocity {
 
         String ip = addrOpt.get().getAddress().getHostAddress();
 
-        // Skip local
-        if (ip.equals("127.0.0.1") || ip.startsWith("192.168.")
-                || ip.startsWith("10.") || ip.equals("0:0:0:0:0:0:0:1")) return;
+        // Skip loopback, private, link-local, and all other reserved ranges
+        if (LocalAddressUtil.isLocal(ip)) return;
 
         // Bypass
         if (player.hasPermission("rofvpn.bypass")) return;

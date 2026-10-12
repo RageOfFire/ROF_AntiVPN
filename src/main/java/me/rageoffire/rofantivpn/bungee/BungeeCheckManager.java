@@ -6,6 +6,7 @@ import me.rageoffire.rofantivpn.api.VpnCheckResult;
 import me.rageoffire.rofantivpn.api.VpnProvider;
 import me.rageoffire.rofantivpn.cache.IpCache;
 import me.rageoffire.rofantivpn.util.DiscordUtil;
+import me.rageoffire.rofantivpn.util.LocalAddressUtil;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PostLoginEvent;
@@ -75,9 +76,8 @@ public class BungeeCheckManager implements Listener {
         if (addr == null) return;
         String ip = addr.getAddress().getHostAddress();
 
-        // Skip local addresses
-        if (ip.equals("127.0.0.1") || ip.startsWith("192.168.")
-                || ip.startsWith("10.") || ip.equals("0:0:0:0:0:0:0:1")) return;
+        // Skip loopback, private, link-local, and all other reserved ranges
+        if (LocalAddressUtil.isLocal(ip)) return;
 
         // Bypass permission
         if (player.hasPermission("rofvpn.bypass")) return;
