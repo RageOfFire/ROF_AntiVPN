@@ -1,0 +1,116 @@
+##############################################################
+#                    ROF_AntiVPN v3.0                        #
+#                      by RageOfFire                         #
+##############################################################
+
+# ─── API CONFIGURATION ────────────────────────────────────
+# Primary API: proxycheck.io
+# Get a free API key at https://proxycheck.io (1000 queries/day free)
+# Leave empty ('') to use proxycheck.io without a key (lower limits)
+api-key: ''
+
+# Fallback API: ipquery.io
+# Completely FREE, no key required, no registration.
+# Used automatically when proxycheck.io fails or is rate-limited.
+fallback-api: 'ipquery'   # options: ipquery, none
+
+# What to do when ALL APIs fail (fail-open = allow, fail-close = kick)
+api-fail-action: allow    # options: allow, deny
+
+# ─── CACHE ────────────────────────────────────────────────
+cache:
+  # How long (in minutes) to remember an IP result before re-checking
+  ttl: 1440   # 24 hours
+
+# ─── DETECTION SETTINGS ───────────────────────────────────
+detection:
+  # Minimum risk score (0-100) to trigger a kick. Requires proxycheck.io key.
+  # Set to 0 to kick on ANY detection regardless of risk.
+  min-risk: 50
+
+  # Check for VPN
+  check-vpn: true
+  # Check for Proxy
+  check-proxy: true
+  # Check for Tor exit nodes
+  check-tor: true
+
+# ─── WHITELIST ────────────────────────────────────────────
+whitelist:
+  # IPs that are always allowed regardless of VPN status
+  ips:
+    - '127.0.0.1'
+    - '0:0:0:0:0:0:0:1'
+
+  # 2-letter country codes that are always allowed (ISO 3166-1 alpha-2)
+  # Example: ['US', 'GB', 'AU']
+  countries: []
+
+# ─── PUNISHMENT ───────────────────────────────────────────
+# Action taken when a VPN is detected: kick or command
+punishment:
+  action: kick   # options: kick, command
+  # If action is 'command', this command is run as console. Use %player%
+  command: 'ban %player% Using VPN/Proxy'
+
+# ─── LOGGING ──────────────────────────────────────────────
+logs:
+  # Print detections to the server console
+  console: true
+  # Send an in-game alert to players with rofvpn.alert permission
+  player: true
+  # Write detections to a log file (plugins/ROF_AntiVPN/logs/)
+  file: true
+  # Log file date format. New file is created each day.
+  date-format: 'yyyy-MM-dd'
+
+# ─── MESSAGES ─────────────────────────────────────────────
+# Supports & color codes and MiniMessage (on Paper)
+# Placeholders: %player%, %ip%, %risk%, %country%, %type%
+messages:
+  kick-message: '&cSorry, VPNs are not allowed on this server!'
+  command-reload: '&aROF_AntiVPN reloaded successfully!'
+  command-cache-cleared: '&aIP cache cleared. &e%count% &aentries removed.'
+  no-permission: '&cYou do not have permission to do that.'
+  usage-main: '&cUsage: /rofvpn <reload|setapikey|check|cache>'
+  usage-key: '&cUsage: /rofvpn setapikey <api-key>'
+  usage-check: '&cUsage: /rofvpn check <player>'
+  apikey-success: '&aAPI key updated successfully!'
+  setup-key: '&cNo API key set. Use /rofvpn setapikey or edit config.yml.'
+  alert-message: '&e[AntiVPN] &f%player% &7(%ip%) &e— Risk: &f%risk%% &e| Country: &f%country% &e| Type: &f%type%'
+  check-result-vpn: '&e[AntiVPN] &f%player% &cIS &fusing a VPN/Proxy. Risk: &f%risk%% &f| Country: &f%country%'
+  check-result-clean: '&e[AntiVPN] &f%player% &ais &fclean. Risk: &f%risk%% &f| Country: &f%country%'
+  check-player-offline: '&cPlayer %player% is not online.'
+  bypassed: '&7[AntiVPN] &f%player% &7has bypass permission, skipping check.'
+
+# ─── DISCORD WEBHOOK ──────────────────────────────────────
+discord-webhook:
+  enable: false
+  webhook-url: 'your-webhook-url'
+  name: 'ROF_AntiVPN'
+  avatar: 'https://i.imgur.com/FbdMyWF.png'
+  title: 'VPN/Proxy Detected'
+  description: '%player% joined the server using a VPN/Proxy'
+  color: 15158332   # Red (decimal). Use https://imagecolorpicker.com/
+  fields:
+    1:
+      name: 'Player'
+      value: '%player%'
+      inline: true
+    2:
+      name: 'IP'
+      value: '%ip%'
+      inline: true
+    3:
+      name: 'Risk'
+      value: '%risk%%'
+      inline: true
+    4:
+      name: 'Country'
+      value: '%country%'
+      inline: true
+    5:
+      name: 'Type'
+      value: '%type%'
+      inline: true
+  thumbnail: 'https://mc-heads.net/avatar/%player%/'

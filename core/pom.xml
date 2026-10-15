@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>me.rageoffire</groupId>
+        <artifactId>ROF_AntiVPN-parent</artifactId>
+        <version>3.0.0</version>
+    </parent>
+
+    <artifactId>ROF_AntiVPN-core</artifactId>
+    <packaging>jar</packaging>
+    <name>ROF_AntiVPN Core</name>
+
+    <dependencies>
+        <!-- Gson for JSON parsing — shaded into consumer jars -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- SnakeYAML for ProxyConfigLoader (provided by BungeeCord/Velocity at runtime) -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
