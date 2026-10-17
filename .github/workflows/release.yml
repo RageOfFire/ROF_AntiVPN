@@ -1,0 +1,61 @@
+name: Build & Release
+
+# Triggers when you push a tag like v3.0.0, v3.1.2, etc.
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-and-release:
+    name: Build & Publish Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to create GitHub Releases
+
+    steps:
+      # 1. Checkout source
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Set up Java 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      # 3. Extract version from tag (strips leading 'v')
+      - name: Extract version
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+      # 4. Set Maven project version to match the tag
+      - name: Set Maven version
+        run: mvn versions:set -DnewVersion=${{ steps.version.outputs.VERSION }} -DgenerateBackupPoms=false
+
+      # 5. Build all modules
+      - name: Build with Maven
+        run: mvn clean package --no-transfer-progress -DskipTests
+
+      # 6. Rename jars for clarity
+      - name: Prepare artifacts
+        run: |
+          mkdir -p release-artifacts
+          cp spigot/target/ROF_AntiVPN-spigot-${{ steps.version.outputs.VERSION }}.jar \
+             release-artifacts/ROF_AntiVPN-spigot-${{ steps.version.outputs.VERSION }}.jar
+          cp proxy/target/ROF_AntiVPN-proxy-${{ steps.version.outputs.VERSION }}.jar \
+             release-artifacts/ROF_AntiVPN-proxy-${{ steps.version.outputs.VERSION }}.jar
+          ls -lh release-artifacts/
+
+      # 7. Create GitHub Release and upload both jars
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "ROF_AntiVPN ${{ github.ref_name }}"
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: true
+          files: |
+            release-artifacts/ROF_AntiVPN-spigot-${{ steps.version.outputs.VERSION }}.jar
+            release-artifacts/ROF_AntiVPN-proxy-${{ steps.version.outputs.VERSION }}.jar
