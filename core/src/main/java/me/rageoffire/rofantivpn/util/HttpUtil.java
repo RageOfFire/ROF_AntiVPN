@@ -41,7 +41,7 @@ public final class HttpUtil {
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
                 String body = reader.lines().collect(Collectors.joining());
-                return body.isBlank() ? Optional.empty() : Optional.of(body);
+                return body.trim().isEmpty() ? Optional.empty() : Optional.of(body);
             }
         } catch (Exception e) {
             return Optional.empty();

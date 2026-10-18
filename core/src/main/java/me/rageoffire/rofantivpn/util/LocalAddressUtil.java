@@ -30,7 +30,7 @@ public final class LocalAddressUtil {
      * @return true if the address is local/private
      */
     public static boolean isLocal(String ip) {
-        if (ip == null || ip.isBlank()) return true;
+        if (ip == null || ip.trim().isEmpty()) return true;
 
         // Fast string-based checks (avoids InetAddress parsing overhead for common cases)
         if (ip.equals("127.0.0.1"))           return true;  // IPv4 loopback

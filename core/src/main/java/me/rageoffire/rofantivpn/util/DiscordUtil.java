@@ -22,7 +22,7 @@ public final class DiscordUtil {
                                  VpnCheckResult result) {
         if (!config.isDiscordEnabled()) return;
         String webhookUrl = config.getDiscordWebhookUrl();
-        if (webhookUrl.isBlank()) return;
+        if (webhookUrl.trim().isEmpty()) return;
 
         String description = MessageUtil.format(config.getDiscordDescription(), playerName, ip, result);
         String thumbnail   = MessageUtil.formatPlayer(config.getDiscordThumbnail(), playerName);

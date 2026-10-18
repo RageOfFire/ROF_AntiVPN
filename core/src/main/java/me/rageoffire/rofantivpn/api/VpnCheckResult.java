@@ -14,8 +14,8 @@ public class VpnCheckResult {
     public VpnCheckResult(boolean vpnDetected, int riskScore, String country, String type, String provider) {
         this.vpnDetected = vpnDetected;
         this.riskScore   = riskScore;
-        this.country     = country == null || country.isBlank() ? "N/A" : country;
-        this.type        = type == null || type.isBlank() ? "Unknown" : type;
+        this.country     = country == null || country.trim().isEmpty() ? "N/A" : country;
+        this.type        = type == null || type.trim().isEmpty() ? "Unknown" : type;
         this.provider    = provider;
     }
 
