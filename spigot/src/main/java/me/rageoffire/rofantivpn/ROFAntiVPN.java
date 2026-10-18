@@ -2,7 +2,7 @@ package me.rageoffire.rofantivpn;
 
 import me.rageoffire.rofantivpn.cache.IpCache;
 import me.rageoffire.rofantivpn.command.VpnCommand;
-import me.rageoffire.rofantivpn.config.SpigotSpigotConfigManager;
+import me.rageoffire.rofantivpn.config.SpigotConfigManager;
 import me.rageoffire.rofantivpn.listener.PlayerJoinListener;
 import me.rageoffire.rofantivpn.log.VpnLogger;
 import me.rageoffire.rofantivpn.manager.PlaceholderAPIHook;

@@ -6,7 +6,7 @@ import me.rageoffire.rofantivpn.api.ProxyCheckProvider;
 import me.rageoffire.rofantivpn.api.VpnCheckResult;
 import me.rageoffire.rofantivpn.api.VpnProvider;
 import me.rageoffire.rofantivpn.cache.IpCache;
-import me.rageoffire.rofantivpn.config.SpigotSpigotConfigManager;
+import me.rageoffire.rofantivpn.config.SpigotConfigManager;
 import me.rageoffire.rofantivpn.log.VpnLogger;
 import me.rageoffire.rofantivpn.util.DiscordUtil;
 import me.rageoffire.rofantivpn.util.MessageUtil;
