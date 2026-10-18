@@ -70,7 +70,8 @@ public class ROFAntiVPNVelocity {
     public void onPostLogin(PostLoginEvent event) {
         Player player = event.getPlayer();
 
-        if (!(player.getRemoteAddress() instanceof InetSocketAddress addr)) return;
+        if (!(player.getRemoteAddress() instanceof InetSocketAddress)) return;
+        InetSocketAddress addr = (InetSocketAddress) player.getRemoteAddress();
         String ip = addr.getAddress().getHostAddress();
 
         if (LocalAddressUtil.isLocal(ip)) return;

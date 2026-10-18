@@ -85,8 +85,8 @@ public class VpnCommand implements CommandExecutor {
 
                 // Run the manual check async and report back to sender
                 Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-                    var result = checkManager.getCache().get(ip);
-                    if (result.isEmpty()) {
+                    Optional<VpnCheckResult> result = checkManager.getCache().get(ip);
+                    if (!result.isPresent()) {
                         // Not in cache — fire a live check via providers
                         // Temporarily force a fresh lookup by checking both providers manually
                         sender.sendMessage("\u00A7e[AntiVPN] Checking " + target.getName() + " (" + ip + ")...");

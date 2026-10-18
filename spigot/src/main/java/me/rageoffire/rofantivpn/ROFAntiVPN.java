@@ -8,6 +8,7 @@ import me.rageoffire.rofantivpn.log.VpnLogger;
 import me.rageoffire.rofantivpn.manager.PlaceholderAPIHook;
 import me.rageoffire.rofantivpn.manager.VpnCheckManager;
 import org.bukkit.Bukkit;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ROFAntiVPN extends JavaPlugin {
@@ -41,9 +42,9 @@ public class ROFAntiVPN extends JavaPlugin {
                 new PlayerJoinListener(checkManager), this);
 
         // 6. Commands
-        var cmd = getCommand("rofvpn");
+        PluginCommand cmd = getCommand("rofvpn");
         if (cmd != null) {
-            var handler = new VpnCommand(this, configManager, checkManager);
+            VpnCommand handler = new VpnCommand(this, configManager, checkManager);
             cmd.setExecutor(handler);
         }
 

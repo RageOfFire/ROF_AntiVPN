@@ -24,7 +24,7 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
     public void onJoin(PlayerJoinEvent event) {
-        var player = event.getPlayer();
+        Player player = event.getPlayer();
         if (player.getAddress() == null) return;
 
         String ip = player.getAddress().getAddress().getHostAddress();

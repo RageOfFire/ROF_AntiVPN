@@ -116,17 +116,17 @@ public class ProxyConfigLoader extends CoreConfig {
 
     private String str(Map<String, Object> map, String key, String def) {
         Object v = map.get(key);
-        return (v instanceof String s) ? s : def;
+        return (v instanceof String) ? (String) v : def;
     }
 
     private long num(Map<String, Object> map, String key, long def) {
         Object v = map.get(key);
-        return (v instanceof Number n) ? n.longValue() : def;
+        return (v instanceof Number) ? ((Number) v).longValue() : def;
     }
 
     private boolean bool(Map<String, Object> map, String key, boolean def) {
         Object v = map.get(key);
-        return (v instanceof Boolean b) ? b : def;
+        return (v instanceof Boolean) ? (Boolean) v : def;
     }
 
     @SuppressWarnings("unchecked")
