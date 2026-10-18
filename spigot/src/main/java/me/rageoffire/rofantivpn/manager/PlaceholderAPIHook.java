@@ -48,14 +48,21 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
 
         Optional<VpnCheckResult> opt = cache.get(ip);
 
-        return switch (params.toLowerCase()) {
-            case "detected"  -> opt.map(r -> String.valueOf(r.isVpnDetected())).orElse("unknown");
-            case "risk"      -> opt.map(VpnCheckResult::getRiskDisplay).orElse("N/A");
-            case "country"   -> opt.map(VpnCheckResult::getCountry).orElse("N/A");
-            case "type"      -> opt.map(VpnCheckResult::getType).orElse("N/A");
-            case "provider"  -> opt.map(VpnCheckResult::getProvider).orElse("N/A");
-            case "cached"    -> String.valueOf(opt.isPresent());
-            default          -> "";
-        };
+        String param = params.toLowerCase();
+        if ("detected".equals(param)) {
+            return opt.isPresent() ? String.valueOf(opt.get().isVpnDetected()) : "unknown";
+        } else if ("risk".equals(param)) {
+            return opt.isPresent() ? opt.get().getRiskDisplay() : "N/A";
+        } else if ("country".equals(param)) {
+            return opt.isPresent() ? opt.get().getCountry() : "N/A";
+        } else if ("type".equals(param)) {
+            return opt.isPresent() ? opt.get().getType() : "N/A";
+        } else if ("provider".equals(param)) {
+            return opt.isPresent() ? opt.get().getProvider() : "N/A";
+        } else if ("cached".equals(param)) {
+            return String.valueOf(opt.isPresent());
+        } else {
+            return "";
+        }
     }
 }
